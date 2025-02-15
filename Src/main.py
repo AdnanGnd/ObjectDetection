@@ -14,9 +14,10 @@ CLASSES = ["Motorcycle", "Pedestrian", "Pedestrian-Crossing", "Prohibition-Sign"
 
 # Load the trained model
 model = ObjectDetectionCNN(num_classes=len(CLASSES))  # Replace with your model class
-model.load_state_dict(torch.load('best_model.pth'))
+model.load_state_dict(torch.load('best_model.pth', map_location=device))
 model.to(device)
 model.eval()  # Set the model to evaluation mode
+
 
 # Define paths
 input_video_path = 'path/to/input_video.mp4'
