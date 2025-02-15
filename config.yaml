@@ -1,0 +1,10 @@
+num_classes: 8
+batch_size: 8
+learning_rate: 0.001
+num_epochs: 10
+train_image_dir: 'path/to/train/images'
+train_label_dir: 'path/to/train/labels'
+val_image_dir: 'path/to/val/images'
+val_label_dir: 'path/to/val/labels'
+test_image_dir: 'path/to/test/images'
+test_label_dir: 'path/to/test/labels'
