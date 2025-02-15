@@ -1,13 +1,9 @@
 import cv2
 import numpy as np
+from torchvision.transforms import ToTensor
+import torch
 
 def process_frame(frame, model, device, CLASSES):
-    """
-    Process a single frame:
-    1. Preprocess the frame.
-    2. Run the model to get predictions.
-    3. Draw bounding boxes and class labels.
-    """
     # Preprocess the frame
     input_size = (224, 224)  # Match the input size expected by the model
     frame_resized = cv2.resize(frame, input_size)
@@ -18,19 +14,20 @@ def process_frame(frame, model, device, CLASSES):
         class_output, box_output = model(frame_tensor)
 
     # Convert predictions to class labels and bounding boxes
-    class_id = torch.argmax(class_output, dim=1).item()  # Predicted class
-    class_label = CLASSES[class_id]  # Class name
-    bbox = box_output.squeeze().cpu().numpy()  # Bounding box coordinates [x_min, y_min, x_max, y_max]
+    class_ids = torch.argmax(class_output, dim=1).cpu().numpy()  # Predicted classes
+    bboxes = box_output.cpu().numpy()  # Bounding box coordinates [x_min, y_min, x_max, y_max]
 
     # Scale bounding box coordinates back to the original frame size
     height, width, _ = frame.shape
-    bbox = bbox * np.array([width, height, width, height])  # Scale to original frame size
-    bbox = bbox.astype(int)  # Convert to integers
+    bboxes = bboxes * np.array([width, height, width, height])  # Scale to original frame size
+    bboxes = bboxes.astype(int)  # Convert to integers
 
-    # Draw bounding box and class label on the frame
-    x_min, y_min, x_max, y_max = bbox
-    cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)  # Green box
-    cv2.putText(frame, class_label, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)  # Class label
+    # Draw bounding boxes and class labels on the frame
+    for class_id, bbox in zip(class_ids, bboxes):
+        x_min, y_min, x_max, y_max = bbox
+        class_label = CLASSES[class_id]  # Class name
+        cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)  # Green box
+        cv2.putText(frame, class_label, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)  # Class label
 
     return frame
 

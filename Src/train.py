@@ -7,6 +7,9 @@ import yaml
 from dataset import CustomObjectDetectionDataset
 from model import ObjectDetectionCNN
 
+CLASSES = ["Motorcycle", "Pedestrian", "Pedestrian-Crossing", "Prohibition-Sign",
+           "Red-Traffic-Light", "Speed-Limit-Sign", "Truck", "Warning-Sign"]
+
 # Load configuration
 with open('config.yaml', 'r') as f:
     config = yaml.safe_load(f)

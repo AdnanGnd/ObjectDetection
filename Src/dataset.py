@@ -3,6 +3,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 import torch
 from torchvision.transforms import ToTensor
+from utils import yolo_to_bbox
 
 
 class CustomObjectDetectionDataset(Dataset):
