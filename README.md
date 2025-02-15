@@ -9,6 +9,8 @@ This project implements an object detection model using a custom dataset with YO
 - `train.py`: Implements the training loop and logic.
 - `config.yaml`: Configuration file for setting parameters.
 - `utils.py`: Utility functions (e.g., `yolo_to_bbox`).
+- `frameProcessing.py` : process and predict class and bounding box in each frame of a video 
+- `main.py` :  main program 
 - `requirements.txt`: Lists all the dependencies required for the project.
 - `README.md`: This file.
 
@@ -21,5 +23,6 @@ This project implements an object detection model using a custom dataset with YO
 
 1. Update the `config.yaml` file with the appropriate paths and parameters.
 2. Run the training script: `python train.py`.
+3. Provide a video to detect objects and Run the main prgram 
 
 
