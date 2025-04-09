@@ -1,0 +1,21 @@
+# Dataset configuration for YOLOv8
+train: 'C:/Users/Administrator/Desktop/cours IESE_S3/Machine_learning/project/ObjectDetection/project_dataset/road_detection/road_detection/train/images'
+val: 'C:/Users/Administrator/Desktop/cours IESE_S3/Machine_learning/project/ObjectDetection/project_dataset/road_detection/road_detection/valid/images'
+test: 'C:/Users/Administrator/Desktop/cours IESE_S3/Machine_learning/project/ObjectDetection/project_dataset/road_detection/road_detection/test/images'
+
+# Number of classes
+nc: 11  # Number of classes (from your dataset)
+
+# Class names (replace these with the actual class names in your dataset)
+names:
+  0: 'car'  # Replace with actual name
+  1: 'traffic_sign'  # Replace with actual name
+  2: 'green_light'  # Replace with actual name
+  3: 'motorcycle'  # Replace with actual name
+  4: 'pedestrian'  # Replace with actual name
+  5: 'pedestrian_crossing'  # Replace with actual name
+  6: 'prohibition_sign'  # Replace with actual name
+  7: 'red_light'  # Replace with actual name
+  8: 'speed_limit_sign'  # Replace with actual name
+  9: 'truck' # Replace with actual name
+  10: 'warning_sign' # Replace with actual name
